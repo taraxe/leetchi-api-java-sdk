@@ -4,3 +4,19 @@
 *.jar
 *.war
 *.ear
+
+#IDE Files
+*.iml
+*/target/*
+*/.settings/*
+*/.classpath
+*/.project
+.settings/*
+*.ipr
+*.iws
+.project
+*~
+
+#Log
+*.log.*
+*.log
