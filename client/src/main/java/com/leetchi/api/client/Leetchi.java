@@ -6,9 +6,7 @@ import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.StatusLine;
 import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.client.methods.HttpUriRequest;
+import org.apache.http.client.methods.*;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
@@ -73,21 +71,43 @@ public class Leetchi {
         Leetchi.partnerId = partnerId;
     }
 
-    public static User createUser(User user) throws Exception {
-        final String json = stringify(user);
-        String jsonResponse = post("users", json);
-        return mapper.readValue(jsonResponse, User.class);
+    public static <T> T create(String path, T entity) throws Exception {
+        final String json = stringify(entity);
+        String jsonResponse = post(path, json);
+        return (T) mapper.readValue(jsonResponse, entity.getClass());
     }
 
-    private static <T> String stringify(T pojo) throws IOException {
-        final StringWriter writer = new StringWriter();
-        mapper.writeValue(writer, pojo);
-        return writer.toString();
+    public static User createUser(User user) throws Exception {
+        return create("users", user);
+    }
+
+    public static <T> T get(String path, Class<T> clazz) throws Exception {
+        String jsonResponse = get(path);
+        return (T) mapper.readValue(jsonResponse, clazz);
     }
 
     public static User fetchUser(Long userId) throws Exception {
-        String jsonResponse = get("users/" + userId);
-        return mapper.readValue(jsonResponse, User.class);
+        return get("users/" + userId, User.class);
+    }
+
+    public static User patchUser(User user) throws Exception {
+        return patch("users/" + user.getId(), user);
+    }
+
+    public static <T> T patch(String path, T entity) throws Exception {
+        final String json = stringify(entity);
+        String jsonResponse = patch(path, json);
+        return (T) mapper.readValue(jsonResponse, entity.getClass());
+    }
+
+    public static User putUser(User user) throws Exception {
+        return put("users/" + user.getId(), user);
+    }
+
+    public static <T> T put(String path, T entity) throws Exception {
+        final String json = stringify(entity);
+        String jsonResponse = put(path, json);
+        return (T) mapper.readValue(jsonResponse, entity.getClass());
     }
 
     public static class StaticConfig {
@@ -127,8 +147,43 @@ public class Leetchi {
             Leetchi.password = password;
             return this;
         }
+
     }
 
+    private static <T> String stringify(T pojo) throws IOException {
+        final StringWriter writer = new StringWriter();
+        mapper.writeValue(writer, pojo);
+        return writer.toString();
+    }
+
+    private static String patch(String path, String body) throws Exception {
+        HttpPatch httpPatch = new HttpPatch(url(path));
+        httpPatch.setEntity(new StringEntity(body));
+        System.out.println(String.format("%s %s", httpPatch.getMethod(), path));
+
+        addSignature(httpPatch, createAuthSignature(httpPatch, body));
+
+        return executeRequest(httpPatch);
+    }
+
+    private static String put(String path, String body) throws Exception {
+        HttpPut httpPut = new HttpPut(url(path));
+        httpPut.setEntity(new StringEntity(body));
+        System.out.println(String.format("%s %s", httpPut.getMethod(), path));
+
+        addSignature(httpPut, createAuthSignature(httpPut, body));
+
+        return executeRequest(httpPut);
+    }
+
+    private static String delete(String path, String body) throws Exception {
+        HttpDelete httpDelete = new HttpDelete(url(path));
+        System.out.println(String.format("%s %s", httpDelete.getMethod(), path));
+
+        addSignature(httpDelete, createAuthSignature(httpDelete, body));
+
+        return executeRequest(httpDelete);
+    }
 
     private static String post(String path, String body) throws Exception {
         HttpPost httpPost = new HttpPost(url(path));

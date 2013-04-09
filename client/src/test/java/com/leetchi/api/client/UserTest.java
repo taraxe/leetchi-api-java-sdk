@@ -49,4 +49,18 @@ public class UserTest extends LeetchiTest {
 
         assertThat(user.getEmail()).isEqualTo("mark@leetchi.com");
     }
+
+    @Test
+    public void patchUserTest() throws Exception {
+        User user = Leetchi.patchUser(Leetchi.fetchUser(15L));
+
+        assertThat(user.getEmail()).isEqualTo("mark@leetchi.com");
+    }
+
+    @Test
+    public void putUserTest() throws Exception {
+        User user = Leetchi.putUser(Leetchi.fetchUser(15L));
+
+        assertThat(user.getEmail()).isEqualTo("mark@leetchi.com");
+    }
 }
