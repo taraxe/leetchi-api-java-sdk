@@ -1,5 +1,6 @@
 package com.leetchi.api.client;
 
+import com.leetchi.api.client.model.Entity;
 import com.leetchi.api.client.model.User;
 import org.apache.commons.io.IOUtils;
 import org.apache.http.HttpEntity;
@@ -71,14 +72,10 @@ public class Leetchi {
         Leetchi.partnerId = partnerId;
     }
 
-    public static <T> T create(String path, T entity) throws Exception {
+    public static <T extends Entity> T create(T entity) throws Exception {
         final String json = stringify(entity);
-        String jsonResponse = post(path, json);
+        String jsonResponse = post(entity.path(), json);
         return (T) mapper.readValue(jsonResponse, entity.getClass());
-    }
-
-    public static User createUser(User user) throws Exception {
-        return create("users", user);
     }
 
     public static <T> T get(String path, Class<T> clazz) throws Exception {
@@ -90,23 +87,15 @@ public class Leetchi {
         return get("users/" + userId, User.class);
     }
 
-    public static User patchUser(User user) throws Exception {
-        return patch("users/" + user.getId(), user);
-    }
-
-    public static <T> T patch(String path, T entity) throws Exception {
+    public static <T extends Entity> T patch(T entity) throws Exception {
         final String json = stringify(entity);
-        String jsonResponse = patch(path, json);
+        String jsonResponse = patch(entity.path(entity.getId()) , json);
         return (T) mapper.readValue(jsonResponse, entity.getClass());
     }
 
-    public static User putUser(User user) throws Exception {
-        return put("users/" + user.getId(), user);
-    }
-
-    public static <T> T put(String path, T entity) throws Exception {
+    public static <T extends Entity> T put( T entity) throws Exception {
         final String json = stringify(entity);
-        String jsonResponse = put(path, json);
+        String jsonResponse = put(entity.path(entity.getId()), json);
         return (T) mapper.readValue(jsonResponse, entity.getClass());
     }
 

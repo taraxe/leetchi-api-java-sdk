@@ -4,6 +4,7 @@ import com.google.common.io.Resources;
 import com.google.common.util.concurrent.AbstractService;
 import com.lateralthoughts.stub.HttpServerStub;
 import com.leetchi.api.client.model.User;
+import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -12,12 +13,17 @@ import static org.fest.assertions.Assertions.assertThat;
 
 public class UserTest extends LeetchiTest {
 
-    private static AbstractService server;
+    static AbstractService server;
 
     @BeforeClass
     public static void beforeClass() {
         server = new HttpServerStub(STUB_PORT, Resources.getResource("UserTestRules.properties").getPath());
         server.startAndWait();
+    }
+
+    @AfterClass
+    public static void afterClass(){
+        server.stopAndWait();
     }
 
     @Before
@@ -32,7 +38,7 @@ public class UserTest extends LeetchiTest {
 
     @Test
     public void createUserTest() throws Exception {
-        User user = Leetchi.createUser(User.newUser()
+        User user = Leetchi.create(User.newUser()
                 .firstName("Mark")
                 .lastName("Zuckeberg")
                 .email("mark@leetchi.com")
@@ -45,21 +51,21 @@ public class UserTest extends LeetchiTest {
 
     @Test
     public void fetchUserTest() throws Exception {
-        User user = Leetchi.fetchUser(15L);
+        User user = User.fetch(15L);
 
         assertThat(user.getEmail()).isEqualTo("mark@leetchi.com");
     }
 
     @Test
     public void patchUserTest() throws Exception {
-        User user = Leetchi.patchUser(Leetchi.fetchUser(15L));
+        User user = Leetchi.patch(Leetchi.fetchUser(15L));
 
         assertThat(user.getEmail()).isEqualTo("mark@leetchi.com");
     }
 
     @Test
     public void putUserTest() throws Exception {
-        User user = Leetchi.putUser(Leetchi.fetchUser(15L));
+        User user = Leetchi.put(Leetchi.fetchUser(15L));
 
         assertThat(user.getEmail()).isEqualTo("mark@leetchi.com");
     }

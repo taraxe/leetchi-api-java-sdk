@@ -1,7 +1,12 @@
 package com.leetchi.api.client;
 
+import com.google.common.io.Resources;
+import com.google.common.util.concurrent.AbstractService;
+import com.lateralthoughts.stub.HttpServerStub;
 import org.bouncycastle.openssl.PEMWriter;
+import org.junit.AfterClass;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Rule;
 import org.junit.rules.TemporaryFolder;
 
@@ -21,6 +26,7 @@ public abstract class LeetchiTest {
     public final TemporaryFolder folder = new TemporaryFolder();
 
     File pemFile;
+
     KeyPair kp;
 
     @Before

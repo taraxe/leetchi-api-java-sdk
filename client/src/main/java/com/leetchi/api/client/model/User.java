@@ -1,16 +1,16 @@
 package com.leetchi.api.client.model;
 
+import com.leetchi.api.client.Leetchi;
 import org.codehaus.jackson.annotate.JsonProperty;
 
-public class User {
+public class User extends Entity<User> {
 
-    private Long id;
+    private static final String PATH = "users";
     private String firstName;
     private String lastName;
     private String email;
     private String nationality;
     private String personType;
-    private String tag;
     private String ip;
     @JsonProperty("IsStrongAuthenticated")
     private Boolean isStrongAuthenticated;
@@ -52,27 +52,9 @@ public class User {
         return this;
     }
 
-    public User tag(String tag) {
-        this.tag = tag;
-        return this;
-    }
-
-    @JsonProperty("Tag")
-    public String getTag() {
-        return tag;
-    }
-
-    void setTag(String tag) {
-        this.tag = tag;
-    }
-
     @JsonProperty("PersonType")
     public String getPersonType() {
         return personType;
-    }
-
-    void setPersonType(String personType) {
-        this.personType = personType;
     }
 
     @JsonProperty("Nationality")
@@ -80,17 +62,9 @@ public class User {
         return nationality;
     }
 
-    void setNationality(String nationality) {
-        this.nationality = nationality;
-    }
-
     @JsonProperty("Email")
     public String getEmail() {
         return email;
-    }
-
-    void setEmail(String email) {
-        this.email = email;
     }
 
     @JsonProperty("LastName")
@@ -98,17 +72,9 @@ public class User {
         return lastName;
     }
 
-    void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
     @JsonProperty("FirstName")
     public String getFirstName() {
         return firstName;
-    }
-
-    void setFirstName(String firstName) {
-        this.firstName = firstName;
     }
 
     @JsonProperty("UpdateDate")
@@ -116,26 +82,9 @@ public class User {
         return updateDate;
     }
 
-    void setUpdateDate(Long updateDate) {
-        this.updateDate = updateDate;
-    }
-
     @JsonProperty("CreationDate")
     public Long getCreationDate() {
         return creationDate;
-    }
-
-    void setCreationDate(Long creationDate) {
-        this.creationDate = creationDate;
-    }
-
-    @JsonProperty("ID")
-    public Long getId() {
-        return id;
-    }
-
-    void setId(Long id) {
-        this.id = id;
     }
 
     @JsonProperty("Birthday")
@@ -143,17 +92,9 @@ public class User {
         return birthday;
     }
 
-    void setBirthday(Long birthday) {
-        this.birthday = birthday;
-    }
-
     @JsonProperty("HasRegisteredMeansOfPayment")
     public Boolean getHasRegisteredMeansOfPayment() {
         return hasRegisteredMeansOfPayment;
-    }
-
-    void setHasRegisteredMeansOfPayment(Boolean hasRegisteredMeansOfPayment) {
-        this.hasRegisteredMeansOfPayment = hasRegisteredMeansOfPayment;
     }
 
     @JsonProperty("CanRegisterMeanOfPayment")
@@ -161,16 +102,8 @@ public class User {
         return canRegisterMeanOfPayment;
     }
 
-    void setCanRegisterMeanOfPayment(Boolean canRegisterMeanOfPayment) {
-        this.canRegisterMeanOfPayment = canRegisterMeanOfPayment;
-    }
-
     public Boolean isStrongAuthenticated() {
         return isStrongAuthenticated;
-    }
-
-    void setIsStrongAuthenticated(Boolean isStrongAuthenticated) {
-        this.isStrongAuthenticated = isStrongAuthenticated;
     }
 
     @JsonProperty("IP")
@@ -178,7 +111,16 @@ public class User {
         return ip;
     }
 
-    void setIp(String ip) {
-        this.ip = ip;
+    @Override
+    public String path() {
+        return User.PATH;
+    }
+
+    public String path(Long id) {
+        return path(User.PATH, id);
+    }
+
+    public static User fetch(Long id) throws Exception {
+        return Leetchi.get(path(User.PATH, id), User.class);
     }
 }
