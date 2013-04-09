@@ -78,18 +78,32 @@ public class Leetchi {
         return (T) mapper.readValue(jsonResponse, entity.getClass());
     }
 
-    public static <T> T get(String path, Class<T> clazz) throws Exception {
-        String jsonResponse = get(path);
-        return (T) mapper.readValue(jsonResponse, clazz);
+    public static <T> T create(String path, T entity) throws Exception {
+        final String json = stringify(entity);
+        String jsonResponse = post(path, json);
+        return (T) mapper.readValue(jsonResponse, entity.getClass());
     }
 
-    public static User fetchUser(Long userId) throws Exception {
-        return get("users/" + userId, User.class);
+    public static <T> T fetch(String path, Class<T> clazz) throws Exception {
+        String jsonResponse = get(path);
+        return (T) mapper.readValue(jsonResponse, clazz);
     }
 
     public static <T extends Entity> T patch(T entity) throws Exception {
         final String json = stringify(entity);
         String jsonResponse = patch(entity.path(entity.getId()) , json);
+        return (T) mapper.readValue(jsonResponse, entity.getClass());
+    }
+
+    public static <T> T patch(String path, T entity) throws Exception {
+        final String json = stringify(entity);
+        String jsonResponse = patch(path , json);
+        return (T) mapper.readValue(jsonResponse, entity.getClass());
+    }
+
+    public static <T> T put(String path, T entity) throws Exception {
+        final String json = stringify(entity);
+        String jsonResponse = put(path, json);
         return (T) mapper.readValue(jsonResponse, entity.getClass());
     }
 

@@ -3,15 +3,20 @@ package com.leetchi.api.client;
 import com.google.common.io.Resources;
 import com.google.common.util.concurrent.AbstractService;
 import com.lateralthoughts.stub.HttpServerStub;
+import com.leetchi.api.client.model.Entity;
 import com.leetchi.api.client.model.User;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import sun.rmi.server.UnicastServerRef;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import static org.fest.assertions.Assertions.assertThat;
 
-public class UserTest extends LeetchiTest {
+public class MapTest extends LeetchiTest {
 
     static AbstractService server;
 
@@ -38,35 +43,40 @@ public class UserTest extends LeetchiTest {
 
     @Test
     public void createUserTest() throws Exception {
-        User user = Leetchi.create(User.newUser()
-                .firstName("Mark")
-                .lastName("Zuckeberg")
-                .email("mark@leetchi.com")
-                .nationality("FR")
-                .personType("NATURAL_PERSON")
-                .tag("Custom info from app"));
+        Map<String, ?> user = Leetchi.create(User.PATH, userMap());
 
-        assertThat(user.getEmail()).isEqualTo("mark@leetchi.com");
+        assertThat(user.get("Email")).isEqualTo("mark@leetchi.com");
+    }
+
+    private Map<String, ?> userMap() {
+        Map<String, String> map = new HashMap<String, String>();
+        map.put("FirstName", "Mark");
+        map.put("LastName", "Zuckeberg");
+        map.put("Email", "mark@leetchi.com");
+        map.put("Nationality", "FR");
+        map.put("PersonType", "NATURAL_PERSON");
+        map.put("Tag", "Custom info from app");
+        return map;
     }
 
     @Test
     public void fetchUserTest() throws Exception {
-        User user = User.fetch(15L);
+        Map<String, ?> user = Leetchi.fetch(User.path(User.PATH, 15L), Map.class);
 
-        assertThat(user.getEmail()).isEqualTo("mark@leetchi.com");
+        assertThat(user.get("Email")).isEqualTo("mark@leetchi.com");
     }
 
     @Test
     public void patchUserTest() throws Exception {
-        User user = Leetchi.patch(User.fetch(15L));
+        Map<String, ?> user = Leetchi.patch(User.path(User.PATH, 15L), userMap());
 
-        assertThat(user.getEmail()).isEqualTo("mark@leetchi.com");
+        assertThat(user.get("Email")).isEqualTo("mark@leetchi.com");
     }
 
     @Test
     public void putUserTest() throws Exception {
-        User user = Leetchi.put(User.fetch(15L));
+        Map<String, ?> user = Leetchi.put(User.path(User.PATH, 15L), userMap());
 
-        assertThat(user.getEmail()).isEqualTo("mark@leetchi.com");
+        assertThat(user.get("Email")).isEqualTo("mark@leetchi.com");
     }
 }

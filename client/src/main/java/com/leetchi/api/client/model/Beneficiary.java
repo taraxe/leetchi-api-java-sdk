@@ -60,7 +60,7 @@ public class Beneficiary extends Entity<Beneficiary> {
     }
 
     public static Beneficiary fetch(Long id) throws Exception {
-        return Leetchi.get(path(Beneficiary.PATH, id), Beneficiary.class);
+        return Leetchi.fetch(path(Beneficiary.PATH, id), Beneficiary.class);
     }
 
     public Long getUserId() {

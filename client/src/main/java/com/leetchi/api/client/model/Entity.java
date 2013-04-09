@@ -13,7 +13,7 @@ public abstract class Entity<T extends Entity> {
 
     public abstract String path(Long id);
 
-    protected static String path(String path, Long id) {
+    public static String path(String path, Long id) {
         return path + "/" + id;
     }
 

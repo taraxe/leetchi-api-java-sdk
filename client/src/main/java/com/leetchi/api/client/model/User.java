@@ -5,7 +5,7 @@ import org.codehaus.jackson.annotate.JsonProperty;
 
 public class User extends Entity<User> {
 
-    private static final String PATH = "users";
+    public static final String PATH = "users";
     private String firstName;
     private String lastName;
     private String email;
@@ -121,6 +121,6 @@ public class User extends Entity<User> {
     }
 
     public static User fetch(Long id) throws Exception {
-        return Leetchi.get(path(User.PATH, id), User.class);
+        return Leetchi.fetch(path(User.PATH, id), User.class);
     }
 }
