@@ -26,10 +26,14 @@
             <version>${commons-io.version}</version>
         </dependency>
         <dependency>
-            <groupId>net.sf.json-lib</groupId>
-            <artifactId>json-lib</artifactId>
-            <classifier>jdk15</classifier>
-            <version>2.4</version>
+            <groupId>org.codehaus.jackson</groupId>
+            <artifactId>jackson-mapper-asl</artifactId>
+            <version>1.9.11</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>${commons.lang.version}</version>
         </dependency>
 
         <dependency>
@@ -44,6 +48,12 @@
             <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>com.lateralthoughts.stub</groupId>
+            <artifactId>http-server</artifactId>
+            <version>0.1.0</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
     <properties>
@@ -52,5 +62,21 @@
         <junit.version>4.10</junit.version>
         <bouncycastle.version>140</bouncycastle.version>
         <json-lib.version>2.4</json-lib.version>
+        <commons.lang.version>3.1</commons.lang.version>
     </properties>
+
+    <repositories>
+        <repository>
+            <id>lateral-snapshots</id>
+            <url>http://nexus.lateral-thoughts.com/content/repositories/lateral-snapshots/</url>
+        </repository>
+        <repository>
+            <id>lateral-releases</id>
+            <url>http://nexus.lateral-thoughts.com/content/repositories/lateral-releases//</url>
+        </repository>
+        <repository>
+            <id>lateral-3rd_party</id>
+            <url>http://nexus.lateral-thoughts.com/content/groups/public/</url>
+        </repository>
+    </repositories>
 </project>
