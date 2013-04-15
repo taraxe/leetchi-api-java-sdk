@@ -15,6 +15,7 @@ import org.bouncycastle.openssl.PEMReader;
 import org.bouncycastle.openssl.PasswordFinder;
 import org.bouncycastle.util.encoders.Base64;
 import org.codehaus.jackson.map.ObjectMapper;
+import org.codehaus.jackson.type.TypeReference;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
@@ -87,6 +88,11 @@ public class Leetchi {
     public static <T> T fetch(String path, Class<T> clazz) throws Exception {
         String jsonResponse = get(path);
         return (T) mapper.readValue(jsonResponse, clazz);
+    }
+
+    public static <T> T fetch(String path, TypeReference type) throws Exception {
+        String jsonResponse = get(path);
+        return (T) mapper.readValue(jsonResponse, type);
     }
 
     public static <T extends Entity> T patch(T entity) throws Exception {

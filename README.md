@@ -66,3 +66,6 @@ Note : You can use any POJO and any api path instead
 
     User user = Leetchi.put(User.fetch(15L).email("newemail@gmail.com");
 
+
+## Tests
+

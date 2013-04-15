@@ -3,6 +3,8 @@ package com.leetchi.api.client.model;
 import com.leetchi.api.client.Leetchi;
 import org.codehaus.jackson.annotate.JsonProperty;
 
+import java.util.List;
+
 public class User extends Entity<User> {
 
     public static final String PATH = "users";
@@ -19,6 +21,9 @@ public class User extends Entity<User> {
     private Long birthday;
     private Long creationDate;
     private Long updateDate;
+
+    @JsonProperty("PersonalWalletAmount")
+    private Long personalWalletAmount;
 
     User() {
     }
@@ -122,5 +127,13 @@ public class User extends Entity<User> {
 
     public static User fetch(Long id) throws Exception {
         return Leetchi.fetch(path(User.PATH, id), User.class);
+    }
+
+    public List<Wallet> wallets() throws Exception {
+        return Wallet.fromUser(id);
+    }
+
+    public Long getPersonalWalletAmount() {
+        return personalWalletAmount;
     }
 }

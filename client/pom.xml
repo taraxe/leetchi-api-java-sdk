@@ -51,7 +51,7 @@
         <dependency>
             <groupId>com.lateralthoughts.stub</groupId>
             <artifactId>http-server</artifactId>
-            <version>0.1.0</version>
+            <version>${http-server.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -63,6 +63,7 @@
         <bouncycastle.version>140</bouncycastle.version>
         <json-lib.version>2.4</json-lib.version>
         <commons.lang.version>3.1</commons.lang.version>
+        <http-server.version>0.2.0</http-server.version>
     </properties>
 
     <repositories>
