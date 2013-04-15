@@ -44,7 +44,9 @@ public class UserTest extends LeetchiTest {
                 .email("mark@leetchi.com")
                 .nationality("FR")
                 .personType("NATURAL_PERSON")
-                .tag("Custom info from app"));
+                .tag("Custom info from app")
+                .birthday(System.currentTimeMillis())
+                .canRegisterMeanOfPayment(false));
 
         assertThat(user.getEmail()).isEqualTo("mark@leetchi.com");
     }

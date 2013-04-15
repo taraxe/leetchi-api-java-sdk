@@ -43,8 +43,9 @@ public class PaymentCardTest extends LeetchiTest {
     @Test
     public void createPaymentCardTest() throws Exception {
         PaymentCard card = Leetchi.create(PaymentCard.newPaymentCards()
-                .ownerId(12345L)
-                .returnUrl("http://return/url"));
+                .ownerId(12345L).tag("stuff")
+                .returnUrl("http://return/url")
+                .templateURL("http://template/url"));
 
         assertThat(card.getCardNumber()).isEqualTo("497010XXXXXX0154");
     }

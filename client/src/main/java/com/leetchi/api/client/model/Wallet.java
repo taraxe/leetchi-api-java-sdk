@@ -115,4 +115,14 @@ public class Wallet extends Entity<Wallet>{
     public Long getExpirationDate() {
         return expirationDate;
     }
+
+    public Wallet description(String description) {
+        this.description = description;
+        return this;
+    }
+
+    public Wallet contributionLimitDate(Long contributionLimitDate) {
+        this.contributionLimitDate = contributionLimitDate;
+        return this;
+    }
 }

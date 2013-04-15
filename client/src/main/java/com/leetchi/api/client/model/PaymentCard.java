@@ -72,4 +72,9 @@ public class PaymentCard extends Entity<PaymentCard> {
         return Leetchi.fetch(path(User.PATH, userId) + "/" + PaymentCard.PATH, new TypeReference<List<PaymentCard>>() { });
 
     }
+
+    public PaymentCard templateURL(String templateURL) {
+        this.templateURL = templateURL;
+        return this;
+    }
 }

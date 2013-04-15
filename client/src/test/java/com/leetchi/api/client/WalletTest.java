@@ -42,8 +42,9 @@ public class WalletTest extends LeetchiTest {
     @Test
     public void createWalletTest() throws Exception {
         Wallet wallet = Leetchi.create(Wallet.newWallet()
-                .name("test")
+                .name("test").description("stuff")
                 .ownersIds(1L, 2L)
+                .contributionLimitDate(1380186358L)
                 .raisingGoalAmount(12000L));
 
         assertThat(wallet.getName()).isEqualTo("test");

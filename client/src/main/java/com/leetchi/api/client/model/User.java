@@ -16,7 +16,7 @@ public class User extends Entity<User> {
     private String ip;
     @JsonProperty("IsStrongAuthenticated")
     private Boolean isStrongAuthenticated;
-    private Boolean canRegisterMeanOfPayment;
+    private Boolean canRegisterMeanOfPayment = true;
     private Boolean hasRegisteredMeansOfPayment;
     private Long birthday;
 
@@ -127,5 +127,15 @@ public class User extends Entity<User> {
 
     public List<PaymentCard> paymentCards() throws Exception {
         return PaymentCard.fromUser(id);
+    }
+
+    public User canRegisterMeanOfPayment(boolean canRegisterMeanOfPayment) {
+        this.canRegisterMeanOfPayment = canRegisterMeanOfPayment;
+        return this;
+    }
+
+    public User birthday(Long birthday) {
+        this.birthday = birthday;
+        return this;
     }
 }
