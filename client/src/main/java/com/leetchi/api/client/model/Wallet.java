@@ -10,10 +10,6 @@ import java.util.List;
 public class Wallet extends Entity<Wallet>{
     private static final String PATH = "wallets";
 
-    @JsonProperty("CreationDate")
-    private Long creationDate;
-    @JsonProperty("UpdateDate")
-    private Long updateDate;
     @JsonProperty("Owners")
     private List<Long> ownersIds;
     @JsonProperty("Name")
@@ -68,14 +64,6 @@ public class Wallet extends Entity<Wallet>{
     public Wallet raisingGoalAmount(Long raisingGoalAmount) {
         this.raisingGoalAmount = raisingGoalAmount;
         return this;
-    }
-
-    public Long getCreationDate() {
-        return creationDate;
-    }
-
-    public Long getUpdateDate() {
-        return updateDate;
     }
 
     public List<Long> getOwnersIds() {

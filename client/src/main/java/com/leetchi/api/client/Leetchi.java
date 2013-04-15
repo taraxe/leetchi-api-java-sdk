@@ -185,11 +185,11 @@ public class Leetchi {
         return executeRequest(httpPut);
     }
 
-    private static String delete(String path, String body) throws Exception {
+    public static String delete(String path) throws Exception {
         HttpDelete httpDelete = new HttpDelete(url(path));
         System.out.println(String.format("%s %s", httpDelete.getMethod(), path));
 
-        addSignature(httpDelete, createAuthSignature(httpDelete, body));
+        addSignature(httpDelete, createAuthSignature(httpDelete));
 
         return executeRequest(httpDelete);
     }

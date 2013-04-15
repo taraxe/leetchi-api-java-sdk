@@ -77,6 +77,5 @@ public class WalletTest extends LeetchiTest {
 
         users = Wallet.fetch(12345L).users();
         assertThat(users).hasSize(2);
-
     }
 }

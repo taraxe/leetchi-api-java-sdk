@@ -8,6 +8,11 @@ public abstract class Entity<T extends Entity> {
     protected Long id;
     @JsonProperty("Tag")
     private String tag;
+    @JsonProperty("CreationDate")
+    private Long creationDate;
+
+    @JsonProperty("UpdateDate")
+    private Long updateDate;
 
     public abstract String path();
 
@@ -21,10 +26,6 @@ public abstract class Entity<T extends Entity> {
         return id;
     }
 
-    void setId(Long id) {
-        this.id = id;
-    }
-
     public T tag(String tag) {
         this.tag = tag;
         return (T) this;
@@ -34,7 +35,13 @@ public abstract class Entity<T extends Entity> {
         return tag;
     }
 
-    void setTag(String tag) {
-        this.tag = tag;
+    public Long getUpdateDate() {
+        return updateDate;
     }
+
+    public Long getCreationDate() {
+        return creationDate;
+    }
+
+
 }

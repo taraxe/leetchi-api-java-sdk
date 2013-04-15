@@ -19,8 +19,6 @@ public class User extends Entity<User> {
     private Boolean canRegisterMeanOfPayment;
     private Boolean hasRegisteredMeansOfPayment;
     private Long birthday;
-    private Long creationDate;
-    private Long updateDate;
 
     @JsonProperty("PersonalWalletAmount")
     private Long personalWalletAmount;
@@ -82,16 +80,6 @@ public class User extends Entity<User> {
         return firstName;
     }
 
-    @JsonProperty("UpdateDate")
-    public Long getUpdateDate() {
-        return updateDate;
-    }
-
-    @JsonProperty("CreationDate")
-    public Long getCreationDate() {
-        return creationDate;
-    }
-
     @JsonProperty("Birthday")
     public Long getBirthday() {
         return birthday;
@@ -135,5 +123,9 @@ public class User extends Entity<User> {
 
     public Long getPersonalWalletAmount() {
         return personalWalletAmount;
+    }
+
+    public List<PaymentCard> paymentCards() throws Exception {
+        return PaymentCard.fromUser(id);
     }
 }
