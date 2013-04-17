@@ -54,7 +54,7 @@ public class MapTest extends LeetchiTest {
         map.put("LastName", "Zuckeberg");
         map.put("Email", "mark@leetchi.com");
         map.put("Nationality", "FR");
-        map.put("PersonType", "NATURAL_PERSON");
+        map.put("PersonType", User.NATURAL_PERSON_TYPE);
         map.put("Tag", "Custom info from app");
         return map;
     }

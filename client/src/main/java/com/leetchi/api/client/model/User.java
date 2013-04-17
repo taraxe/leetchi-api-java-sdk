@@ -8,6 +8,8 @@ import java.util.List;
 public class User extends Entity<User> {
 
     public static final String PATH = "users";
+    public static final String NATURAL_PERSON_TYPE = "NATURAL_PERSON";
+    public static final String LEGAL_PERSON_TYPE = "LEGAL_PERSON";
     private String firstName;
     private String lastName;
     private String email;

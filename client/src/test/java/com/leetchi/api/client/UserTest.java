@@ -43,7 +43,7 @@ public class UserTest extends LeetchiTest {
                 .lastName("Zuckeberg")
                 .email("mark@leetchi.com")
                 .nationality("FR")
-                .personType("NATURAL_PERSON")
+                .personType(User.NATURAL_PERSON_TYPE)
                 .tag("Custom info from app")
                 .birthday(System.currentTimeMillis())
                 .canRegisterMeanOfPayment(false));
