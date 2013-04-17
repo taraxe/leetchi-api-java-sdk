@@ -1,6 +1,7 @@
 package com.leetchi.api.client;
 
 import com.leetchi.api.client.model.Entity;
+import com.leetchi.api.client.model.LeetchiError;
 import com.leetchi.api.client.model.User;
 import org.apache.commons.io.IOUtils;
 import org.apache.http.HttpEntity;
@@ -14,6 +15,8 @@ import org.bouncycastle.jce.provider.BouncyCastleProvider;
 import org.bouncycastle.openssl.PEMReader;
 import org.bouncycastle.openssl.PasswordFinder;
 import org.bouncycastle.util.encoders.Base64;
+import org.codehaus.jackson.JsonParseException;
+import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.type.TypeReference;
 
@@ -22,6 +25,8 @@ import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 import java.io.*;
 import java.security.*;
+import java.util.HashMap;
+import java.util.Map;
 
 import static org.apache.commons.lang3.StringUtils.*;
 
@@ -77,6 +82,19 @@ public class Leetchi {
         final String json = stringify(entity);
         String jsonResponse = post(entity.path(), json);
         return (T) mapper.readValue(jsonResponse, entity.getClass());
+    }
+
+    private static String filterError(String jsonResponse) throws IOException {
+        try {
+            Map<String, String> responseAsMap =  mapper.readValue(jsonResponse, new HashMap<String, String>().getClass());
+            if(responseAsMap.containsKey("ErrorCode")) {
+                throw mapper.readValue(jsonResponse, LeetchiError.class);
+            }
+        } catch(JsonMappingException ex) {
+            // Not an error then
+        }
+
+        return jsonResponse;
     }
 
     public static <T> T create(String path, T entity) throws Exception {
@@ -172,7 +190,7 @@ public class Leetchi {
 
         addSignature(httpPatch, createAuthSignature(httpPatch, body));
 
-        return executeRequest(httpPatch);
+        return filterError(executeRequest(httpPatch));
     }
 
     private static String put(String path, String body) throws Exception {
@@ -182,7 +200,7 @@ public class Leetchi {
 
         addSignature(httpPut, createAuthSignature(httpPut, body));
 
-        return executeRequest(httpPut);
+        return filterError(executeRequest(httpPut));
     }
 
     public static String delete(String path) throws Exception {
@@ -201,7 +219,7 @@ public class Leetchi {
 
         addSignature(httpPost, createAuthSignature(httpPost, body));
 
-        return executeRequest(httpPost);
+        return filterError(executeRequest(httpPost));
     }
 
     private static String get(String path) throws Exception {
@@ -210,7 +228,7 @@ public class Leetchi {
 
         addSignature(httpRequest, createAuthSignature(httpRequest));
 
-        return executeRequest(httpRequest);
+        return filterError(executeRequest(httpRequest));
     }
 
     private static void addSignature(HttpUriRequest httpRequest, String signature) throws NoSuchProviderException, NoSuchAlgorithmException, InvalidKeyException, SignatureException, NoSuchPaddingException, BadPaddingException, IllegalBlockSizeException, UnsupportedEncodingException {

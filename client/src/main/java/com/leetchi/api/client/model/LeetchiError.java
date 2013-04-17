@@ -3,12 +3,30 @@ package com.leetchi.api.client.model;
 
 import org.codehaus.jackson.annotate.JsonProperty;
 
-public class LeetchiError {
+public class LeetchiError extends Error {
 
-    @JsonProperty("TechnicalDescription")
-    private String technicalDescription;
+    @JsonProperty("ErrorCode")
+    private String errorCode;
+    @JsonProperty("TechnicalMessage")
+    private String technicalMessage;
+    @JsonProperty("UserMessage")
+    private String userMessage;
+    @JsonProperty("Type")
+    private String type;
 
-    public String getTechnicalDescription() {
-        return technicalDescription;
+    public String getErrorCode() {
+        return errorCode;
+    }
+
+    public String getTechnicalMessage() {
+        return technicalMessage;
+    }
+
+    public String getUserMessage() {
+        return userMessage;
+    }
+
+    public String getType() {
+        return type;
     }
 }

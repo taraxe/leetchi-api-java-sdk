@@ -10,7 +10,6 @@ public abstract class Entity<T extends Entity> {
     private String tag;
     @JsonProperty("CreationDate")
     private Long creationDate;
-
     @JsonProperty("UpdateDate")
     private Long updateDate;
 
@@ -42,6 +41,5 @@ public abstract class Entity<T extends Entity> {
     public Long getCreationDate() {
         return creationDate;
     }
-
 
 }

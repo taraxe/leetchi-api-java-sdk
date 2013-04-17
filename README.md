@@ -67,5 +67,11 @@ Note : You can use any POJO and any api path instead
     User user = Leetchi.put(User.fetch(15L).email("newemail@gmail.com");
 
 
+
+## Handling Error
+
+In case of an error return by the leetchi api server, the sdk will throw a LeetchiError
+
+
 ## Tests
 
