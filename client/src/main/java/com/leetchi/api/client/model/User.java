@@ -21,7 +21,8 @@ public class User extends Entity<User> {
     private Boolean canRegisterMeanOfPayment = true;
     private Boolean hasRegisteredMeansOfPayment;
     private Long birthday;
-
+    @JsonProperty("Password")
+    private String password;
     @JsonProperty("PersonalWalletAmount")
     private Long personalWalletAmount;
 
@@ -139,5 +140,9 @@ public class User extends Entity<User> {
     public User birthday(Long birthday) {
         this.birthday = birthday;
         return this;
+    }
+
+    public String getPassword() {
+        return password;
     }
 }

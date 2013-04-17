@@ -4,7 +4,6 @@ import com.google.common.io.Resources;
 import com.google.common.util.concurrent.AbstractService;
 import com.lateralthoughts.stub.HttpServerStub;
 import com.leetchi.api.client.model.Beneficiary;
-import com.leetchi.api.client.model.User;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -23,7 +22,7 @@ public class BeneficiaryTest extends LeetchiTest {
     }
 
     @AfterClass
-    public static void afterClass(){
+    public static void afterClass() {
         server.stopAndWait();
     }
 

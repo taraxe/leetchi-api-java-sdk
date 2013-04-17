@@ -3,13 +3,11 @@ package com.leetchi.api.client;
 import com.google.common.io.Resources;
 import com.google.common.util.concurrent.AbstractService;
 import com.lateralthoughts.stub.HttpServerStub;
-import com.leetchi.api.client.model.Entity;
 import com.leetchi.api.client.model.User;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import sun.rmi.server.UnicastServerRef;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -7,7 +7,7 @@ import org.codehaus.jackson.type.TypeReference;
 import java.util.Arrays;
 import java.util.List;
 
-public class Wallet extends Entity<Wallet>{
+public class Wallet extends Entity<Wallet> {
     private static final String PATH = "wallets";
 
     @JsonProperty("Owners")
@@ -24,19 +24,23 @@ public class Wallet extends Entity<Wallet>{
     private Long spentAmount;
     @JsonProperty("RemainingAmount")
     private Long remainingAmount;
+    @JsonProperty("Amount")
+    private Long amount;
     @JsonProperty("IsClosed")
     private Boolean closed;
     @JsonProperty("ContributionLimitDate")
     private Long contributionLimitDate;
     @JsonProperty("ExpirationDate")
-    private Long  expirationDate;
+    private Long expirationDate;
 
     public static List<Wallet> fromUser(Long userId) throws Exception {
-        return Leetchi.fetch(path(User.PATH, userId) + "/" + Wallet.PATH, new TypeReference<List<Wallet>>() { });
+        return Leetchi.fetch(path(User.PATH, userId) + "/" + Wallet.PATH, new TypeReference<List<Wallet>>() {
+        });
     }
 
     public static List<User> users(Long walletId) throws Exception {
-        return Leetchi.fetch(path(Wallet.PATH, walletId) + "/" + User.PATH, new TypeReference<List<User>>() { });
+        return Leetchi.fetch(path(Wallet.PATH, walletId) + "/" + User.PATH, new TypeReference<List<User>>() {
+        });
     }
 
     public static Wallet fetch(Long walletId) throws Exception {
@@ -124,5 +128,9 @@ public class Wallet extends Entity<Wallet>{
     public Wallet contributionLimitDate(Long contributionLimitDate) {
         this.contributionLimitDate = contributionLimitDate;
         return this;
+    }
+
+    public Long getAmount() {
+        return amount;
     }
 }

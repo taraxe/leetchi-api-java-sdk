@@ -1,7 +1,9 @@
 package com.leetchi.api.client.model;
 
 import org.codehaus.jackson.annotate.JsonProperty;
+import org.codehaus.jackson.map.annotate.JsonSerialize;
 
+@JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
 public abstract class Entity<T extends Entity> {
 
     @JsonProperty("ID")

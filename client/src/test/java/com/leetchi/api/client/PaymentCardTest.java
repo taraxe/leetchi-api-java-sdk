@@ -5,7 +5,6 @@ import com.google.common.util.concurrent.AbstractService;
 import com.lateralthoughts.stub.HttpServerStub;
 import com.leetchi.api.client.model.PaymentCard;
 import com.leetchi.api.client.model.User;
-import com.leetchi.api.client.model.Wallet;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;

@@ -7,13 +7,13 @@
     <parent>
         <groupId>com.leetchi-api</groupId>
         <artifactId>sdk</artifactId>
-        <version>0.1.0-SNAPSHOT</version>
+        <version>0.1.2-SNAPSHOT</version>
         <relativePath>../</relativePath>
     </parent>
 
     <groupId>com.leetchi-api</groupId>
-    <artifactId>client-stub</artifactId>
-    <version>0.1.0-SNAPSHOT</version>
+    <artifactId>client-test</artifactId>
+    <version>0.1.2-SNAPSHOT</version>
 
     <dependencies>
         <dependency>

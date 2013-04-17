@@ -109,7 +109,7 @@ public class Contribution extends Entity<Contribution> {
     }
 
     public static Contribution fetch(Long contributionId) throws Exception {
-       return Leetchi.fetch(path(PATH, contributionId), Contribution.class);
+        return Leetchi.fetch(path(PATH, contributionId), Contribution.class);
     }
 
     public Long getUserId() {

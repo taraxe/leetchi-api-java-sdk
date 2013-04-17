@@ -69,7 +69,8 @@ public class PaymentCard extends Entity<PaymentCard> {
     }
 
     public static List<PaymentCard> fromUser(Long userId) throws Exception {
-        return Leetchi.fetch(path(User.PATH, userId) + "/" + PaymentCard.PATH, new TypeReference<List<PaymentCard>>() { });
+        return Leetchi.fetch(path(User.PATH, userId) + "/" + PaymentCard.PATH, new TypeReference<List<PaymentCard>>() {
+        });
 
     }
 

@@ -10,8 +10,6 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import static org.fest.assertions.Assertions.assertThat;
-
 public class ErrorTest extends LeetchiTest {
 
     static AbstractService server;
