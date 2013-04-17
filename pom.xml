@@ -3,7 +3,7 @@
 
     <groupId>com.leetchi-api</groupId>
     <artifactId>sdk</artifactId>
-    <version>0.1.1</version>
+    <version>0.1.2-SNAPSHOT</version>
     <name>Leetchi Java SDK</name>
     <packaging>pom</packaging>
 
