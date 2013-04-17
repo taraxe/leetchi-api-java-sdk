@@ -9,7 +9,7 @@
 
     <modules>
         <module>client</module>
-        <module>client-stub</module>
+        <!--<module>client-stub</module>-->
     </modules>
 
     <distributionManagement>
