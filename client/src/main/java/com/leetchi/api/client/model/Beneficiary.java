@@ -8,22 +8,16 @@ public class Beneficiary extends Entity<Beneficiary> {
 
     @JsonProperty("UserID")
     private Long userId;
-
     @JsonProperty("CreationDate")
     private Long creationDate;
-
     @JsonProperty("UpdateDate")
     private Long updateDate;
-
     @JsonProperty("BankAccountOwnerName")
     private String bankAccountOwnerName;
-
     @JsonProperty("BankAccountOwnerAddress")
     private String bankAccountOwnerAddress;
-
     @JsonProperty("BankAccountIBAN")
     private String bankAccountIBAN;
-
     @JsonProperty("BankAccountBIC")
     private String bankAccountBIC;
 
