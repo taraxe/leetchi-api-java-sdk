@@ -49,16 +49,10 @@ public class WithdrawalContribution extends Entity<WithdrawalContribution> {
         return this;
     }
 
-    public WithdrawalContribution amount(Long amount) {
-        this.amount = amount;
-        return this;
-    }
-
     public WithdrawalContribution amountDeclared(Long amountDeclared) {
         this.amountDeclared = amountDeclared;
         return this;
     }
-
 
     public static WithdrawalContribution fetch(Long withdrawalContributionId) throws Exception {
         return Leetchi.fetch(path(PATH, withdrawalContributionId), WithdrawalContribution.class);
