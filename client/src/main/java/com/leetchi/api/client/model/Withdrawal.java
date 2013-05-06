@@ -5,7 +5,7 @@ import org.codehaus.jackson.annotate.JsonProperty;
 
 public class Withdrawal extends Entity<Withdrawal> {
 
-    public final static String PATH = "withdrawals";
+    public static final String PATH = "withdrawals";
 
     @JsonProperty("UserID")
     private Long userId;

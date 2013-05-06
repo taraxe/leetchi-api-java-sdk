@@ -5,7 +5,7 @@ import org.codehaus.jackson.annotate.JsonProperty;
 
 public class ImmediateContribution extends Entity<ImmediateContribution> {
 
-    public final static String PATH = "immediate-contributions";
+    public static final String PATH = "immediate-contributions";
 
     @JsonProperty("UserID")
     private Long userId;

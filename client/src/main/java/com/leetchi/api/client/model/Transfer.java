@@ -5,14 +5,15 @@ import org.codehaus.jackson.annotate.JsonProperty;
 
 public class Transfer extends Entity<Transfer> {
 
-    public final static String PATH = "transfers";
+    public static final String PATH = "transfers";
+    public static final Long PERSONAL_ACCOUNT = 0L;
 
     @JsonProperty("UserID")
     private Long userId;
     @JsonProperty("BeneficiaryWalletID")
-    private Long beneficiaryWalletId;
+    private Long beneficiaryWalletId = PERSONAL_ACCOUNT;
     @JsonProperty("PayerWalletID")
-    private Long payerWalletId;
+    private Long payerWalletId = PERSONAL_ACCOUNT;
     @JsonProperty("Amount")
     private Long amount;
     @JsonProperty("ClientFeeAmount")
