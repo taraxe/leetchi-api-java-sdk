@@ -8,8 +8,6 @@ public class Transfer extends Entity<Transfer> {
     public static final String PATH = "transfers";
     public static final Long PERSONAL_ACCOUNT = 0L;
 
-    @JsonProperty("UserID")
-    private Long userId;
     @JsonProperty("BeneficiaryWalletID")
     private Long beneficiaryWalletId = PERSONAL_ACCOUNT;
     @JsonProperty("PayerWalletID")
@@ -31,11 +29,6 @@ public class Transfer extends Entity<Transfer> {
     @Override
     public String path(Long id) {
         return path(PATH, id);
-    }
-
-    public Transfer userId(Long userId) {
-        this.userId = userId;
-        return this;
     }
 
     public Transfer beneficiaryWalletId(Long beneficiaryWalletId) {
@@ -64,7 +57,7 @@ public class Transfer extends Entity<Transfer> {
     }
 
     public Transfer payerId(Long payerId) {
-        this.beneficiaryId = payerId;
+        this.payerId = payerId;
         return this;
     }
 
@@ -82,10 +75,6 @@ public class Transfer extends Entity<Transfer> {
 
     public Long getBeneficiaryWalletId() {
         return beneficiaryWalletId;
-    }
-
-    public Long getUserId() {
-        return userId;
     }
 
     public Long getBeneficiaryId() {
