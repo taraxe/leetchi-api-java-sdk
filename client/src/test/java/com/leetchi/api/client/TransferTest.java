@@ -3,7 +3,7 @@ package com.leetchi.api.client;
 import com.google.common.io.Resources;
 import com.google.common.util.concurrent.AbstractService;
 import com.lateralthoughts.stub.HttpServerStub;
-import com.leetchi.api.client.model.WithdrawalContribution;
+import com.leetchi.api.client.model.Transfer;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -11,13 +11,13 @@ import org.junit.Test;
 
 import static org.fest.assertions.Assertions.assertThat;
 
-public class WithdrawalContributionTest extends LeetchiTest {
+public class TransferTest extends LeetchiTest {
 
     static AbstractService server;
 
     @BeforeClass
     public static void beforeClass() {
-        server = new HttpServerStub(STUB_PORT, Resources.getResource("WithdrawalContributionTestRules.properties").getPath());
+        server = new HttpServerStub(STUB_PORT, Resources.getResource("TransferTestRules.properties").getPath());
         server.startAndWait();
     }
 
@@ -37,21 +37,24 @@ public class WithdrawalContributionTest extends LeetchiTest {
     }
 
     @Test
-    public void createContributionTest() throws Exception {
-        WithdrawalContribution contribution = Leetchi.create(WithdrawalContribution.newWithdrawalContribution()
-                .userId(12345L)
-                .walletId(12345L)
+    public void createTranserTest() throws Exception {
+        Transfer transfer = Leetchi.create(Transfer.newTransfer()
+                .payerWalletId(12345L)
+                .beneficiaryWalletId(12345L)
+                .amount(1200L)
+                .clientFeeAmount(1200L)
                 .tag("optional")
-                .amountDeclared(1400L));
+                .beneficiaryId(12345L)
+                .payerId(12345L));
 
-        assertThat(contribution.getGeneratedReference()).isEqualTo("C200698_U200697_example_Wire");
+        assertThat(transfer.getBeneficiaryWalletId()).isEqualTo(196902L);
     }
 
     @Test
-    public void fetchContributionTest() throws Exception {
-        WithdrawalContribution contribution = WithdrawalContribution.fetch(15L);
+    public void fetchTransferTest() throws Exception {
+        Transfer transfer = Transfer.fetch(15L);
 
-        assertThat(contribution.getGeneratedReference()).isEqualTo("C200698_U200697_example_Wire");
+        assertThat(transfer.getBeneficiaryWalletId()).isEqualTo(196902L);
     }
 
 }
