@@ -8,10 +8,6 @@ public class Beneficiary extends Entity<Beneficiary> {
 
     @JsonProperty("UserID")
     private Long userId;
-    @JsonProperty("CreationDate")
-    private Long creationDate;
-    @JsonProperty("UpdateDate")
-    private Long updateDate;
     @JsonProperty("BankAccountOwnerName")
     private String bankAccountOwnerName;
     @JsonProperty("BankAccountOwnerAddress")
@@ -59,14 +55,6 @@ public class Beneficiary extends Entity<Beneficiary> {
 
     public Long getUserId() {
         return userId;
-    }
-
-    public Long getCreationDate() {
-        return creationDate;
-    }
-
-    public Long getUpdateDate() {
-        return updateDate;
     }
 
     public String getBankAccountOwnerName() {
