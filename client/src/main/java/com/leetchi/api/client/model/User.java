@@ -142,6 +142,11 @@ public class User extends Entity<User> {
         return this;
     }
 
+    public User ip(String ip) {
+        this.ip = ip;
+        return this;
+    }
+
     public String getPassword() {
         return password;
     }
