@@ -19,6 +19,8 @@ public class PaymentCard extends Entity<PaymentCard> {
     private String templateURL;
     @JsonProperty("ReturnURL")
     private String returnURL;
+    @JsonProperty("Culture")
+    private String culture;
 
     public Long getOwnerId() {
         return ownerId;
@@ -38,6 +40,10 @@ public class PaymentCard extends Entity<PaymentCard> {
 
     public String getReturnURL() {
         return returnURL;
+    }
+
+    public String getCulture() {
+        return culture;
     }
 
     @Override
