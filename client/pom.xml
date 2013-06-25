@@ -5,13 +5,13 @@
     <parent>
         <groupId>com.leetchi-api</groupId>
         <artifactId>sdk</artifactId>
-        <version>0.3.2</version>
+        <version>0.3.3-SNAPSHOT</version>
         <relativePath>../</relativePath>
     </parent>
 
     <groupId>com.leetchi-api</groupId>
     <artifactId>client</artifactId>
-    <version>0.3.2</version>
+    <version>0.3.3-SNAPSHOT</version>
 
     <dependencies>
 
