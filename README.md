@@ -5,7 +5,7 @@ Java SDK for Leetchi API
 ## Initialize the SDK
 
     Leetchi.config()
-        .privateKey(pemFile)
+        .privateKey(new java.io.File("path/to/privateKey")) // not the .pem, nor the .pub
         .partnerId("MyPartnerId")
         .baseUrl(Leetchi.PROD_URL)
         .password("my private key password");
